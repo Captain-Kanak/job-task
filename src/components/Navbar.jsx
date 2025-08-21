@@ -53,8 +53,10 @@ export default function Navbar() {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link href={"/login"} className="btn btn-primary">
-            Login
+          <Link href={"/login"}>
+            <button className="w-full btn bg-orange-500 text-white rounded-lg font-bold">
+              Log In
+            </button>
           </Link>
         </div>
       </div>
