@@ -4,7 +4,7 @@ import Logo from "./Logo";
 export default function Footer() {
   return (
     <div className="bg-base-300">
-      <footer className="footer max-w-7xl mx-auto sm:footer-horizontal text-base-content py-10">
+      <footer className="footer max-w-7xl mx-auto px-4 lg:px-0 sm:footer-horizontal text-base-content py-10">
         <aside>
           <Logo />
           <p>
