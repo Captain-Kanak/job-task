@@ -2,12 +2,9 @@ import React from "react";
 
 export default async function ProductDetailsPage({ params }) {
   const id = (await params).id;
-  const res = await fetch(
-    `http://job-task-git-main-captain-kanaks-projects.vercel.app/${id}`,
-    {
-      cache: "no-store", // ensures fresh data
-    }
-  );
+  const res = await fetch(`http://localhost:3000/api/items/${id}`, {
+    cache: "no-store", // ensures fresh data
+  });
   const product = await res.json();
 
   return (

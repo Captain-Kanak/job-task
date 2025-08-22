@@ -4,12 +4,9 @@ import ProductCard from "../components/ProductCard";
 export const dynamic = "force-dynamic";
 
 export default async function ProductsPage() {
-  const res = await fetch(
-    "http://job-task-git-main-captain-kanaks-projects.vercel.app",
-    {
-      cache: "force-cache",
-    }
-  );
+  const res = await fetch("http://localhost:3000/api/items", {
+    cache: "force-cache",
+  });
   const products = await res.json();
 
   return (

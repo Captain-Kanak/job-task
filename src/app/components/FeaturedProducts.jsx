@@ -3,12 +3,9 @@ import ProductCard from "./ProductCard";
 import Link from "next/link";
 
 export default async function FeaturedProducts() {
-  const res = await fetch(
-    "http://job-task-git-main-captain-kanaks-projects.vercel.app",
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch("http://localhost:3000/api/items", {
+    cache: "no-store",
+  });
   const products = await res.json();
   const firstEight = products.slice(0, 8);
 
