@@ -1,5 +1,7 @@
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductDetailsPage({ params }) {
   const id = (await params).id;
   const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;

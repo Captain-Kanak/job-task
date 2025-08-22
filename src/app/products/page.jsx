@@ -1,6 +1,8 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductsPage() {
   const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
 

@@ -2,6 +2,8 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function FeaturedProducts() {
   const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
 
