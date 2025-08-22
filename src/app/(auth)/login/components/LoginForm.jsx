@@ -1,12 +1,16 @@
 "use client";
 
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // signIn();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    await signIn("credentials", { email, password });
   };
 
   return (
