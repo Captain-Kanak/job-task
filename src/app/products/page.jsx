@@ -3,7 +3,7 @@ import ProductCard from "../components/ProductCard";
 
 export default async function ProductsPage() {
   const res = await fetch("http://localhost:3000/api/items", {
-    cache: "no-store", // ensures always fresh
+    cache: "force-cache",
   });
   const products = await res.json();
 

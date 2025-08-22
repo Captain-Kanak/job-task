@@ -1,8 +1,11 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
 export default function ProductAddForm() {
+  const router = useRouter();
+
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
@@ -26,6 +29,7 @@ export default function ProductAddForm() {
 
       if (res.ok) {
         toast.success("✅ Product added successfully!");
+        router.push("/products");
         form.reset();
       } else {
         toast.error("❌ Failed to add product. Try again.");

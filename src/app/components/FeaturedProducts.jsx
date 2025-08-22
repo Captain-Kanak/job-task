@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function FeaturedProducts() {
   const res = await fetch("http://localhost:3000/api/items", {
-    cache: "no-store", // ensure fresh data in Next.js
+    cache: "no-store",
   });
   const products = await res.json();
   const firstEight = products.slice(0, 8);
