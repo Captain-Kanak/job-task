@@ -1,6 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   const data = await dbConnect("products").find().toArray();
@@ -11,7 +10,7 @@ export async function GET() {
     _id: item._id.toString(),
   }));
 
-  return NextResponse.json(cleanData, { status: 200 });
+  return Response.json(cleanData, { status: 200 });
 }
 
 export async function POST(req) {
@@ -21,7 +20,7 @@ export async function POST(req) {
     const result = await dbConnect("products").insertOne(postedData);
     revalidatePath("/products");
 
-    return NextResponse.json(
+    return Response.json(
       {
         acknowledged: result.acknowledged,
         insertedId: result.insertedId.toString(),
@@ -29,7 +28,7 @@ export async function POST(req) {
       { status: 201 }
     );
   } catch (error) {
-    return NextResponse.json(
+    return Response.json(
       { success: false, message: error.message },
       { status: 500 }
     );
