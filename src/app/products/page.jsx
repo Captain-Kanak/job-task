@@ -3,6 +3,9 @@ import ProductCard from "../components/ProductCard";
 
 export default async function ProductsPage() {
   const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+
+  console.log(NEXT_PUBLIC_SERVER_ADDRESS);
+
   const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
     cache: "force-cache",
   });

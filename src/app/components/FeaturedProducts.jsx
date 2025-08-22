@@ -4,11 +4,27 @@ import Link from "next/link";
 
 export default async function FeaturedProducts() {
   const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+
+  if (!NEXT_PUBLIC_SERVER_ADDRESS) {
+    throw new Error("NEXT_PUBLIC_SERVER_ADDRESS is not defined in env");
+  }
+
   const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
     cache: "no-store",
   });
-  const products = await res.json();
-  const firstEight = products.slice(0, 8);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch products: ${res.status}`);
+  }
+
+  let products = [];
+  try {
+    products = await res.json();
+  } catch (err) {
+    console.error("Error parsing JSON:", err);
+  }
+
+  const firstEight = products?.slice(0, 8) || [];
 
   return (
     <div className="py-12 bg-gray-50">

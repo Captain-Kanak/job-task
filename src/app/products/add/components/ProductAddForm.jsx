@@ -5,7 +5,9 @@ import toast from "react-hot-toast";
 
 export default function ProductAddForm() {
   const router = useRouter();
-  const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+  const API_URL = process.env.NEXT_PUBLIC_SERVER_ADDRESS;
+
+  console.log(API_URL);
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function ProductAddForm() {
     const payload = { brand, name, image, description, price };
 
     try {
-      const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
+      const res = await fetch(`${API_URL}/api/items`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {
@@ -29,11 +31,11 @@ export default function ProductAddForm() {
       });
 
       if (res.ok) {
-        toast.success("✅ Product added successfully!");
+        toast.success("Product added successfully!");
         router.push("/products");
         form.reset();
       } else {
-        toast.error("❌ Failed to add product. Try again.");
+        toast.error("Failed to add product. Try again.");
       }
     } catch (error) {
       toast.error("⚠️ Something went wrong.");
