@@ -7,11 +7,14 @@ import { usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
+
+  // console.log(session);
 
   const links = (
     <>
@@ -35,16 +38,18 @@ export default function Navbar() {
           Products
         </Link>
       </li>
-      <li>
-        <Link
-          href="/products/add"
-          className={`${
-            pathname === "/products/add" ? "text-orange-500" : "text-gray-700"
-          } hover:text-orange-500 transition-colors font-semibold text-lg`}
-        >
-          Add Product
-        </Link>
-      </li>
+      {session && (
+        <li>
+          <Link
+            href="/products/add"
+            className={`${
+              pathname === "/products/add" ? "text-orange-500" : "text-gray-700"
+            } hover:text-orange-500 transition-colors font-semibold text-lg`}
+          >
+            Add Product
+          </Link>
+        </li>
+      )}
     </>
   );
 
@@ -86,12 +91,23 @@ export default function Navbar() {
         {/* Navbar End */}
         <div className="navbar-end gap-3 lg:gap-4">
           {status == "authenticated" ? (
-            <button
-              onClick={() => signOut()}
-              className="bg-orange-500 py-1 lg:py-2 px-3 lg:px-4 rounded-lg cursor-pointer hover:bg-orange-600 transition-all duration-200 lg:font-semibold"
-            >
-              Log Out
-            </button>
+            <>
+              <div className="border-3 border-orange-500 rounded-full">
+                <Image
+                  src={session?.user?.image}
+                  width={40}
+                  height={40}
+                  alt="User Image"
+                  className="rounded-full"
+                />
+              </div>
+              <button
+                onClick={() => signOut()}
+                className="bg-orange-500 py-1 lg:py-2 px-3 lg:px-4 rounded-lg cursor-pointer hover:bg-orange-600 transition-all duration-200 lg:font-semibold"
+              >
+                Log Out
+              </button>
+            </>
           ) : (
             <>
               <Link href="/login">

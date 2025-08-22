@@ -22,11 +22,11 @@ export default function LoginForm() {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/products",
       });
 
       if (res?.ok) {
-        router.push("/");
+        router.push("/products");
         form.reset();
 
         Swal.fire({
@@ -53,7 +53,7 @@ export default function LoginForm() {
       <h1 className="text-xl lg:text-3xl text-center font-extrabold mb-6">
         Login Your Account
       </h1>
-      <form onSubmit={handleLogin} className="w-full space-y-5">
+      <form onSubmit={handleLogin} className="space-y-5">
         {/* Email Field */}
         <div>
           <label className="font-bold">Email</label>

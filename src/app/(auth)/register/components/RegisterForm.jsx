@@ -18,7 +18,10 @@ export default function RegisterForm() {
   };
 
   return (
-    <div>
+    <div className="p-4 lg:p-8">
+      <h1 className="text-xl lg:text-3xl text-center font-extrabold mb-6">
+        Register Your Account
+      </h1>
       <form onSubmit={handleRegister} className="space-y-5">
         {/* Name Field */}
         <div>

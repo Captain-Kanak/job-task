@@ -5,10 +5,7 @@ import Link from "next/link";
 
 export default function RegisterPage() {
   return (
-    <div className="flex flex-col items-center justify-center border border-orange-500 rounded-xl py-10">
-      <h1 className="lg:text-3xl font-extrabold mb-10">
-        Register Your Account
-      </h1>
+    <div className="border border-orange-500 rounded-xl py-4 lg:py-8">
       <RegisterForm />
       <div className="mt-5 flex flex-col items-center gap-4">
         <p className="font-semibold">Or Continue With</p>
