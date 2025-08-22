@@ -1,24 +1,13 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
-import dbConnect from "@/lib/dbConnect";
 
 export default async function FeaturedProducts() {
-  // const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
-  // const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}`, {
-  //   cache: "no-store",
-  // });
-  // const products = await res.json();
-
-  const db = await dbConnect();
-  const data = await db.collection("products").find().toArray();
-
-  // Convert ObjectId to string so it's valid JSON
-  const products = data.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-  }));
-
+  const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+  const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
+    cache: "no-store",
+  });
+  const products = await res.json();
   const firstEight = products.slice(0, 8);
 
   return (
