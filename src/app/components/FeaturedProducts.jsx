@@ -6,8 +6,8 @@ export default async function FeaturedProducts() {
   const res = await fetch("http://localhost:3000/api/items", {
     cache: "no-store", // ensure fresh data in Next.js
   });
-  const data = await res.json();
-  const firstEight = data.slice(0, 8);
+  const products = await res.json();
+  const firstEight = products.slice(0, 8);
 
   return (
     <div className="py-12 bg-gray-50">
