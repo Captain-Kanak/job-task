@@ -19,13 +19,16 @@ export default function ProductAddForm() {
     const payload = { brand, name, image, description, price };
 
     try {
-      const res = await fetch("http://localhost:3000/api/items", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "http://job-task-git-main-captain-kanaks-projects.vercel.app",
+        {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (res.ok) {
         toast.success("✅ Product added successfully!");
