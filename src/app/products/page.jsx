@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export default function ProductsPage() {
-  return (
-    <div>ProductsPage</div>
-  )
+export default async function ProductsPage() {
+  const res = await fetch("http://localhost:3000/api/items");
+  const data = await res.json();
+
+  return <div>{data.length}</div>;
 }
