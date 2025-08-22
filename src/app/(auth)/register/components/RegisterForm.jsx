@@ -1,10 +1,20 @@
 "use client";
 
+import { registerUser } from "@/app/actions/auth/registerUser";
 import React from "react";
 
 export default function RegisterForm() {
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const payload = { name, email, password };
+
+    await registerUser(payload);
   };
 
   return (
@@ -48,7 +58,7 @@ export default function RegisterForm() {
           type="submit"
           className="w-full btn bg-orange-500 text-white rounded-lg font-bold"
         >
-          Log In
+          Register Now
         </button>
       </form>
     </div>

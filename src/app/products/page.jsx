@@ -8,9 +8,7 @@ export default async function ProductsPage() {
 
   console.log(NEXT_PUBLIC_SERVER_ADDRESS);
 
-  const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
-    cache: "force-cache",
-  });
+  const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`);
   const products = await res.json();
 
   return (

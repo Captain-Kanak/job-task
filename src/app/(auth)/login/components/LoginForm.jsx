@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function LoginForm() {
   const handleLogin = (e) => {
     e.preventDefault();
+    // signIn();
   };
 
   return (

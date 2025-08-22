@@ -1,10 +1,12 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 
 export async function GET(req, { params }) {
   const p = await params;
 
-  const singleData = await dbConnect("products").findOne({
+  const singleData = await dbConnect(
+    collectionNameObj.PRODUCTS_COLLECTIONS
+  ).findOne({
     _id: new ObjectId(p.id),
   });
 
@@ -16,7 +18,9 @@ export async function PATCH(req, { params }) {
   const updateDate = await req.json();
   const filter = { _id: new ObjectId(p.id) };
 
-  const updatedRes = await dbConnect("products").updateOne(
+  const updatedRes = await dbConnect(
+    collectionNameObj.PRODUCTS_COLLECTIONS
+  ).updateOne(
     filter,
     { $set: { ...updateDate } },
     {
@@ -30,7 +34,9 @@ export async function PATCH(req, { params }) {
 export async function DELETE(req, { params }) {
   const p = await params;
 
-  const deleteRes = await dbConnect("products").deleteOne({
+  const deleteRes = await dbConnect(
+    collectionNameObj.PRODUCTS_COLLECTIONS
+  ).deleteOne({
     _id: new ObjectId(p.id),
   });
 
