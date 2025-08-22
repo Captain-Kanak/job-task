@@ -3,7 +3,8 @@ import ProductCard from "./ProductCard";
 import Link from "next/link";
 
 export default async function FeaturedProducts() {
-  const res = await fetch("http://localhost:3000/api/items", {
+  const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+  const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}`, {
     cache: "no-store",
   });
   const products = await res.json();

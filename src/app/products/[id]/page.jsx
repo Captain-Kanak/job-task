@@ -2,7 +2,8 @@ import React from "react";
 
 export default async function ProductDetailsPage({ params }) {
   const id = (await params).id;
-  const res = await fetch(`http://localhost:3000/api/items/${id}`, {
+  const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+  const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items/${id}`, {
     cache: "no-store", // ensures fresh data
   });
   const product = await res.json();
