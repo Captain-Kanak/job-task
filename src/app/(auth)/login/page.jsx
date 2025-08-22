@@ -5,8 +5,7 @@ import Link from "next/link";
 
 export default function LoginPage() {
   return (
-    <div className="flex flex-col items-center justify-center border border-orange-500 rounded-xl py-10">
-      <h1 className="lg:text-3xl font-extrabold mb-10">Login Your Account</h1>
+    <div className="border border-orange-500 rounded-xl py-10">
       <LoginForm />
       <div className="mt-5 flex flex-col items-center gap-4">
         <p className="font-semibold">Or Continue With</p>

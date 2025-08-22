@@ -1,12 +1,17 @@
 "use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { data: session, status } = useSession();
+  const [isOpen, setIsOpen] = useState(false);
 
   const links = (
     <>
@@ -50,15 +55,22 @@ export default function Navbar() {
         <div className="navbar-start flex items-center">
           {/* Mobile dropdown */}
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden mr-2">
-              <HiMenu className="h-6 w-6 text-gray-700" />
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 rounded-md cursor-pointer bg-transparent hover:bg-transparent focus:bg-transparent"
             >
-              {links}
-            </ul>
+              {isOpen ? (
+                <IoMdClose size={30} className="text-gray-700" />
+              ) : (
+                <HiMenu size={30} className="text-gray-700" />
+              )}
+            </button>
+
+            {isOpen && (
+              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow">
+                {links}
+              </ul>
+            )}
           </div>
 
           <Link href="/">
@@ -72,12 +84,28 @@ export default function Navbar() {
         </div>
 
         {/* Navbar End */}
-        <div className="navbar-end">
-          <Link href="/login">
-            <button className="bg-orange-500 py-2 px-4 rounded-lg cursor-pointer hover:bg-orange-600 transition-all duration-200 font-semibold">
-              Log In
+        <div className="navbar-end gap-3 lg:gap-4">
+          {status == "authenticated" ? (
+            <button
+              onClick={() => signOut()}
+              className="bg-orange-500 py-1 lg:py-2 px-3 lg:px-4 rounded-lg cursor-pointer hover:bg-orange-600 transition-all duration-200 lg:font-semibold"
+            >
+              Log Out
             </button>
-          </Link>
+          ) : (
+            <>
+              <Link href="/login">
+                <button className="bg-orange-500 py-1 lg:py-2 px-3 lg:px-4 rounded-lg cursor-pointer hover:bg-orange-600 transition-all duration-200 lg:font-semibold">
+                  Log In
+                </button>
+              </Link>
+              <Link href="/register">
+                <button className="bg-orange-500 py-1 lg:py-2 px-3 lg:px-4 rounded-lg cursor-pointer hover:bg-orange-600 transition-all duration-200 lg:font-semibold">
+                  Register
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
