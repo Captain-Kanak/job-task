@@ -1,12 +1,22 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
+import dbConnect from "@/lib/dbConnect";
 
 export default async function ProductsPage() {
-  const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
-  const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
-    cache: "force-cache",
-  });
-  const products = await res.json();
+  // const { NEXT_PUBLIC_SERVER_ADDRESS } = process.env;
+  // const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
+  //   cache: "force-cache",
+  // });
+  // const products = await res.json();
+
+  const db = await dbConnect();
+  const data = await db.collection("products").find().toArray();
+
+  // Convert ObjectId to string so it's valid JSON
+  const products = data.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
 
   return (
     <div className="py-12 bg-gray-50">
