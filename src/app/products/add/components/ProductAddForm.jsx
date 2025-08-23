@@ -7,8 +7,6 @@ export default function ProductAddForm() {
   const router = useRouter();
   const API_URL = process.env.NEXT_PUBLIC_SERVER_ADDRESS;
 
-  console.log(API_URL);
-
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
