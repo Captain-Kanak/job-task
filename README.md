@@ -17,5 +17,5 @@ Users must be logged in to access certain pages, while public routes remain open
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/your-repo.git
+https://github.com/Captain-Kanak/job-task.git
 cd your-repo
