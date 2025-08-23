@@ -14,8 +14,6 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
-  // console.log(session);
-
   const links = (
     <>
       <li>
